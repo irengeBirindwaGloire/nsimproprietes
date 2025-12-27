@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymelead.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{partials/template}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appartement Ajout</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="d-flex justify-content-between align-items-center ">
+            <div>
+                <h4>Gestion d'appartements</h4>
+                <p>Enregistrement de l'appartement</p>
+            </div>
+            <div>
+                <a th:href="@{/appartement/}" class="btn btn-dark">
+                    <i class="fa fa-arrow-left"></i>
+                    Retour</a>
+            </div>
+        </div>
+        <div class="card shadow-sm border-0 mx-auto">
+            <div class="card-body">
+                <h5 class="text-center text-uppercase">Indentification de l'appartement</h5>
+                <hr />
+                <form th:action="@{/appartement/saveAppartement}" method="post">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="titre" class="form-label">Titre de l'appartement</label>
+                                <select type="text" class="form-select" name="titre" id="titre"
+                                    th:value="${appartement.titre}">
+                                    <option>Choisir le titre de l'appartement</option>
+                                    <option value="Appartement cosy">Appartement cosy</option>
+                                    <option value="Appartement moderne">Appartement moderne</option>
+                                    <option value="Appartement de luxe">Appartement de luxe</option>
+                                    <option value="Villa avec piscine">Villa avec piscine</option>
+                                    <option value="Studio meublé">Studio meublé</option>
+                                    <option value="Appartement centre ville">Appartement centre ville</option>
+                                    <option value="Maison familiale">Maison familiale</option>
+                                    <option value="Maison avec jardin">Maison avec jardin</option>
+                                    <option value="Loft moderne">Loft moderne</option>
+                                    <option value="Penthouse de luxe">Penthouse de luxe</option>
+                                    <option value="Chalet de montagne">Chalet de montagne</option>
+                                    <option value="Appartement bord de mer">Appartement bord de mer</option>
+                                    <option value="Maison de campagne">Maison de campagne</option>
+                                    <option value="Duplex spacieux">Duplex spacieux</option>
+                                </select>
+                                <span th:erros="${appartement.titre}"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="adresse" class="form-label">Adresse</label>
+                                <input type="text" class="form-control" name="adresse" id="adresse"
+                                    th:value="${appartement.adresse}">
+                                <span th:erros="${appartement.adresse}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="ville" class="form-label">Ville</label>
+                                <input type="text" class="form-control" name="ville" id="ville"
+                                    th:value="${appartement.ville}">
+                                <span th:erros="${appartement.ville}"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="codePostal" class="form-label">Code Postal</label>
+                                <input type="text" class="form-control" name="codePostal" id="codePostal"
+                                    th:value="${appartement.codePostal}">
+                                <span th:erros="${appartement.codePostal}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="pays" class="form-label">Pays</label>
+                                <input type="text" class="form-control" name="pays" id="pays"
+                                    th:value="${appartement.pays}">
+                                <span th:erros="${appartement.pays}"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="prix" class="form-label">Prix</label>
+                                <input type="number" class="form-control" name="prix" id="prix"
+                                    th:value="${appartement.prix}">
+                                <span th:erros="${appartement.prix}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="typePropriete" class="form-label">Type de Proriété</label>
+                                <select class="form-select" name="typePropriete" id="typePropriete"
+                                    th:value="${appartement.typePropriete}">
+                                    <option value="Appartement">Appartement</option>
+                                    <option value="Maison">Maison</option>
+                                    <option value="Studio">Studio</option>
+                                    <option value="Villa">Villa</option>
+                                </select>
+                                <span th:erros="${appartement.typePropriete}"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="surface" class="form-label">Surface</label>
+                                <input type="text" class="form-control" name="surface" id="surface"
+                                    th:value="${appartement.surface}">
+                                <span th:erros="${appartement.surface}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="nombreDePieces" class="form-label">Nombre de Pièces</label>
+                                <input type="number" class="form-control" name="nombreDePieces" id="nombreDePieces"
+                                    th:value="${appartement.nombreDePieces}">
+                                <span th:erros="${appartement.nombreDePieces}"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="statut" class="form-label">Statut</label>
+                                <select class="form-select" name="statut" id="statut" th:value="${appartement.statut}">
+                                    <option value="DISPONIBLE">Disponible</option>
+                                    <option value="LOCATION">Loué</option>
+                                    <option value="VENDU">Vendu</option>
+                                </select>
+                                <span th:erros="${appartement.statut}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="disponible" class="form-label">Disponible</label>
+                                <select class="form-select" name="disponible" id="disponible"
+                                    th:value="${appartement.disponible}">
+                                    <option value="true">Oui</option>
+                                    <option value="false">Non</option>
+                                </select>
+                                <span th:erros="${appartement.disponible}"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="client" class="form-label">Client</label>
+                                <select class="form-select" name="client" id="client"
+                                    th:value="${appartement.clientDto}">
+                                    <option>Sélectionnez un client</option>
+                                    <option th:each="c : ${clients}" th:value="${c.id}"
+                                        th:text="${c.nom + ' ' + c.prenom}"></option>
+                                </select>
+                                <span th:erros="${appartement.clientDto}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-block btn-primary">
+                            <i class="fa fa-save"></i>
+                            Enregistrer
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

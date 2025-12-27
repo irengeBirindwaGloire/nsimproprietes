@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymelead.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{partials/template}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="card border-danger shadow-sm col-5 mt-5 mx-auto"> 
+            <div class="card-body">
+                <h5 class="card-title" th:text="${error.titre}">Error Title</h5>
+                <hr class="border border-secondary">
+                <p class="card-text" th:text="${error.message}">Error Message</p>
+                <p class="card-text"><strong>Status Code:</strong> <span th:text="${error.code}">Error Code</span>
+                </p>
+                <span th:text="${#temporals.format(error.localDateTime,'dd-MM-yyyy HH:mm')}"></span>
+        </div>
+    </div>
+</body>
+
+</html>

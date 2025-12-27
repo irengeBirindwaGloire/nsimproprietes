@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymelead.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{partials/template}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Ajout</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h4>Gestion des clients</h4>
+        <p>Liste des clients</p>
+        <div class="card shadow-sm col-5 mx-auto">
+            <div class="card-body">
+                <h5 class="text-center text-uppercase">Indentification du client</h5>
+                <hr />
+                <form th:action="@{/client/saveClient}" method="post">
+                    <div class="mb-3">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" name="nom" id="nom" th:value="${client.nom}">
+                        <span th:erros="${client.nom}"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prenom" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" name="prenom" id="prenom" th:value="${client.prenom}">
+                        <span th:erros="${client.prenom}"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                    th:value="${client.email}">
+                                    <span th:erros="${client.email}"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="telephone" class="form-label">Téléphone</label>
+                                <input type="tel" class="form-control" name="telephone" id="telephone"
+                                    th:value="${client.telephone}">
+                                    <span th:erros="${client.telephone}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-block btn-primary">
+                            <i class="fa fa-save"></i>
+                            Enregistrer
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

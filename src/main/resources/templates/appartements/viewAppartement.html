@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymelead.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{partials/template}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appartement | View</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+
+        <div class="d-flex justify-content-between align-items-center ">
+            <div>
+                <h4>Gestion d'appartements</h4>
+                <p>Informations de l'appartement #<small th:text="${appartement.id}"></small></p>
+            </div>
+            <div>
+                <a th:href="@{/appartement/}" class="btn btn-dark">
+                    <i class="fa fa-arrow-left"></i>
+                    Retour</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Titre </strong>
+                                <span class="badge bg-primary rounded-pill" th:text="${appartement.titre}">14</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Adresse </strong>
+                                <span class="badge bg-primary rounded-pill" th:text="${appartement.adresse}">14</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Ville </strong>
+                                <span class="badge bg-primary rounded-pill" th:text="${appartement.ville}">14</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Code Postal </strong>
+                                <span class="badge bg-primary rounded-pill"
+                                    th:text="${appartement.codePostal}">14</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Pays </strong>
+                                <span class="badge bg-primary rounded-pill" th:text="${appartement.pays}">14</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Type Propriete </strong>
+                                <span class="badge bg-primary rounded-pill"
+                                    th:text="${appartement.typePropriete}">14</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Nombre de Pieces </strong>
+                                <span class="badge bg-primary rounded-pill"
+                                    th:text="${appartement.nombreDePieces}">14</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Statut </strong>
+                                <span class="badge bg-primary rounded-pill" th:text="${appartement.statut}">14</span>
+                            </li>
+                        </ul>
+                        <hr />
+                        <div class="d-grid gap-2">
+                            <a th:href="@{/appartement/edit/{id}(id=${appartement.id})}" class="btn btn-primary">
+                                <i class="fa fa-edit"></i>
+                                Modifier
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5>Description</h5>
+                        <p th:text="${appartement.description}">Description de l'appartement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymelead.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{partials/template}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appartements</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h4>Gestion d'appartements</h4>
+        <p>Liste des appartements</p>
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <form th:action="@{/appartement/}" method="get" class="d-flex">
+                            <input type="search" name="keyword" id="keyword" class="form-control"
+                                placeholder="Recherche" title="search" />
+                            <button type="submit" class="btn btn-primary ms-1" title="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div>
+                        <a th:href="@{/appartement/new}" class="btn btn-dark">
+                            <i class="fa fa-plus"></i>
+                            Nouvelle Appartement</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-3 mb-3" th:each="appartement : ${appartements}">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <small th:text="${appartement.typePropriete}">Type</small>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="text-bold" th:text="${appartement.titre}">Titre</h6>
+                                <span class="badge bg-success" th:text="${appartement.nombreDePieces}+' Pieces'">Nombre des pieces</span>
+                                <span class="badge bg-info ms-1" th:text="${appartement.statut}">Statut</span>
+                            </div>
+                            <div>
+                                <a th:href="@{/appartement/{id}(id=${appartement.id})}"
+                                    class="btn btn-sm btn-outline-secondary" title="Gerer">
+                                    <i class="fa fa-gears"></i>
+                                    Gerer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

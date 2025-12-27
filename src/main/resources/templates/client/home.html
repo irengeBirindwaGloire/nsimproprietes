@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymelead.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{partials/template}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h4>Gestion des clients</h4>
+        <p>Liste des clients</p>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <form th:action="@{/client/}" method="get" class="d-flex">
+                            <input type="search" name="keyword" id="keyword" class="form-control" placeholder="Recherche" title="search" />
+                            <button type="submit" class="btn btn-primary ms-1" title="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div>
+                        <a th:href="@{/client/new}" class="btn btn-dark">
+                            <i class="fa fa-plus"></i>
+                            Nouveau Client</a>
+                    </div>
+
+                </div>
+               
+                <hr />
+                <table class="table table-striped">
+                    <thead>
+                        <th>#</th>
+                        <th>NOM</th>
+                        <th>POST-NOM</th>
+                        <th>EMAIL</th>
+                        <th>CONTACT</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="c : ${clients}">
+                            <!-- <td th:text="${c.id}">1</td> -->
+                            <td th:text="${c.id}">1</td>
+                            <td th:text="${c.nom}">Irenge</td>
+                            <td th:text="${c.prenom}">Gloire</td>
+                            <td th:text="${c.email}">irenge@gmail.com</td>
+                            <td th:text="${c.telephone}">+243 994 348 731</td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm" title="view">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <button class="btn btn-info btn-sm" title="edit">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm" title="delete" onclick=" confirm('Etes-vous sur de vouloir supprimer ?')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <ul class="nav nav-pills">
+                    <li th:each="page,status:${pages}">
+                        <a 
+                        th:class="${status.index==currentPage?'btn btn-primary ms-1':'btn btn-outline-primary ms-1'}"
+                        th:href="@{/client/(page=${status.index},keyword=${keyword})}"  
+                        th:text="${status.index}"> 
+                        </a>
+                    </li>
+                </ul> 
+            </div> 
+        </div>
+    </div>
+ 
+    
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
