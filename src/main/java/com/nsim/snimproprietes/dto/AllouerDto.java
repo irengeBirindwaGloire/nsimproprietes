@@ -20,7 +20,7 @@ import lombok.Setter;
 public class AllouerDto {
 
     private Long id;
-    private ProprieteDto proprietaire;
+    private ProprieteDto propriete;
     private ClientDto client;
     private Date dateDebut;
     private Date dateFin;
@@ -33,7 +33,7 @@ public class AllouerDto {
 
         return AllouerDto.builder()
                 .id(allouer.getId())
-                .proprietaire(ProprieteDto.fromEntity(allouer.getProprietaire()))
+                .propriete(ProprieteDto.fromEntity(allouer.getProprietaire()))
                 .client(ClientDto.fromEntity(allouer.getClient()))
                 .dateDebut(allouer.getDateDebut())
                 .dateFin(allouer.getDateFin())
@@ -43,12 +43,12 @@ public class AllouerDto {
                 .modePaiement(allouer.getModePaiement())
                 .build();
     }
-    
+
     public static Allouer toEntity(AllouerDto allouerDto) {
 
         return Allouer.builder()
                 .id(allouerDto.getId())
-                .proprietaire(ProprieteDto.toEntity(allouerDto.getProprietaire()))
+                .proprietaire(ProprieteDto.toEntity(allouerDto.getPropriete()))
                 .client(ClientDto.toEntity(allouerDto.getClient()))
                 .dateDebut(allouerDto.getDateDebut())
                 .dateFin(allouerDto.getDateFin())
@@ -57,5 +57,5 @@ public class AllouerDto {
                 .etatLoyer(allouerDto.getEtatLoyer())
                 .modePaiement(allouerDto.getModePaiement())
                 .build();
-    }   
+    }
 }

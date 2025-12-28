@@ -11,7 +11,7 @@ import com.nsim.snimproprietes.dto.AllouerDto;
 @Service
 public interface AllouerService {
 
-    public Page<AllouerDto> findAllouerServices(Pageable pageable, String keyword);
+    public Page<AllouerDto> findAllouerServices(Pageable pageable);
 
     public AllouerDto findAllouerById(Long id);
 

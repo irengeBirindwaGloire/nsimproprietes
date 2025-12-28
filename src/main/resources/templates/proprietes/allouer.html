@@ -1,17 +1,119 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http:/www.thymelead.org"
-                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-                layout:decorate="~{partials/template}">
+<html lang="en" xmlns:th="http:/www.thymelead.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{partials/base.template}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Allouer</title>
 </head>
+
 <body>
     <div layout:fragment="content">
-        <h1>Welcome to the Home Page</h1>
-        <p>This is the content of the home page.</p>
+
+        <div class="d-flex justify-content-between">
+            <div>
+                <h4>Gestion des Allocations</h4>
+            </div>
+            <div>
+                <a th:href="@{/proprietes/allouer/new}" class="btn btn-dark">
+                    <i class="fa fa-plus"></i>
+                    Nouvelle Allocation</a>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-2">
+                <div class="card bg-success shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">PAYER</h5>
+                        <p class="mb-0">Total : <span class="">80</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card bg-warning shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">IMPAYER</h5>
+                        <p class="mb-0">Total : <span class="">80</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card bg-secondary shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Allocations</h5>
+                        <p class="mb-0">Total : <span class="">80</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card bg-info shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Allocations</h5>
+                        <p class="mb-0">Total : <span class="">80</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card bg-dark shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">PAYER</h5>
+                        <p class="mb-0">Total : <span class="">80</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card bg-danger shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">IMPAYER</h5>
+                        <p class="mb-0">Total : <span class="">80</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Liste des allocations</p>
+        <hr class="borded borded-secondary">
+        <div class="row">
+            <div class="col-md-4" th:each="allouer : ${allouers}">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <span><img src="/vendors/images/user/avatar-5.jpg" class="rounded-circle" alt="user"
+                                        width="50" /></span>
+                            </div>
+                            <div class="comment-text ms-1 w-100">
+                                <h5 class="fw-bold" th:text="${allouer.client.nom+' '+allouer.client.prenom}">John Doe
+                                </h5>
+                                <p class="mb-1 fs-6 text-muted" th:text="${allouer.propriete.adresse}">123 Main St,
+                                    Cityville
+                                </p>
+                                <div class="comment-footer mt-2">
+                                    <div class="d-flex align-items-center">
+                                        <span th:class="${allouer.statutLoyer == 'PAYER' ? 'badge bg-success' : 'badge bg-warning'}"
+                                            th:text="${allouer.statutLoyer}">Unpaid</span>
+                                        <span class="action-icons">
+                                            <a th:href="@{/propriete/allouer/edit/{id}(id=${allouer.id})}" class="ps-3"
+                                                title="edit">
+                                                <i class="ti ti-edit  "></i></a>
+                                                <a href="#" class="ps-3" title="status">
+                                                    <i th:class="${allouer.statutLoyer == 'PAYER' ? 'text-success ti ti-check' : 'text-danger ti ti-x'}"></i>
+                                                </a>
+                                            <a th:href="@{/propriete/allouer/view/{id}(id=${allouer.id})}" class="ps-3" title="eye">
+                                                <i class="ti ti-eye fs-5"></i></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>

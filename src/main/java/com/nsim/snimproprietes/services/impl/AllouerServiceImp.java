@@ -47,9 +47,9 @@ public class AllouerServiceImp implements AllouerService {
     }
 
     @Override
-    public Page<AllouerDto> findAllouerServices(Pageable pageable, String keyword) {
+    public Page<AllouerDto> findAllouerServices(Pageable pageable) {
        
-        return allouerRepository.findByEtatLoyerContains(keyword, pageable)
+        return allouerRepository.findAll(pageable)
                 .map(AllouerDto::fromEntity);
     }
 

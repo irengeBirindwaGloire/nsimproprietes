@@ -35,6 +35,9 @@ public class ProprieteServiceImpl implements ProprieteService {
 
     @Override
     public ProprieteDto findProprieteById(Long id) {
+        if (id == null) {
+            return null;
+        }
         return proprieteRepository.findById(id)
                 .map(ProprieteDto::fromEntity)
                 .orElseThrow(() -> new RuntimeException("Propriete not found with id: " + id));
